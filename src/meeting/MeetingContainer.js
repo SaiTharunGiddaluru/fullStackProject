@@ -27,7 +27,7 @@ export function MeetingContainer({
 
   const ParticipantMicStream = memo(({ participantId }) => {
     // Individual hook for each participant
-    const { micStream } = useParticipant(participantId);
+    const { micStream, isLocal } = useParticipant(participantId);
 
     useEffect(() => {
 
@@ -37,6 +37,7 @@ export function MeetingContainer({
 
         const audioElement = new Audio();
         audioElement.srcObject = mediaStream;
+        audioElement.muted = isLocal
         audioElement.play();
 
       }
